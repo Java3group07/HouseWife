@@ -1,0 +1,50 @@
+about.html						关于我们页面
+about-detail.html				关于我们公用详情页面
+assess.html						订单评价
+carried.html					余额提现
+collection.html					我的收藏
+complete.html					提示修改密码成功页面
+contract.html					我的合同
+coupon.html						优惠券页面
+empty-list.html					通用空列表页面
+entire.html						房屋信息页面
+entrust.html					委托管理页面
+extension.html					我的推广页面
+house-details.html				房源信息页面
+index.html						首页
+join.html						加盟页面
+landlord.html					我是房东页面
+lease.html						我要出租页面
+life-service.html				生活服务页面
+lose.html						输入新密码页面
+map.html						地图找房页面
+map-house.html					地图找房页面(点击在地图的位置显示详细信息)
+modify.html						修改密码页面
+
+order.html						确认订单页面(1)
+payment.html					租客付款页面(2)
+success.html					付款成功页面(3)
+
+pay-rent.html					付房租(提交信息)
+p-center.html					个人信息页面
+profit.html						我的收益页面
+recharge.html					在线充值页面
+register.html					用户注册页面
+rent-order.html					租房订单页面(全部订单)
+schedule.html					看房日程页面
+service-details.html			服务详情页面
+short.html						修改密码页面时的短信验证页面
+sign.html						登录页面
+
+
+
+
+
+
+
+
+
+
+
+
+
