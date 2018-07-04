@@ -46,24 +46,24 @@
 		
 		<div class="about clefloat" id="main">
 			<div class="p-list p-listwo clearfloat box-s">
-				<a href="about-detail.jsp" class="clearfloat">
+				<a href="pages/about-detail.jsp" class="clearfloat">
 					<span class="fl">公司介绍</span>
 					<i class="iconfont icon-arrowright fr you"></i>
 				</a>
 			</div>
 			<div class="p-list p-listhree clearfloat box-s">
-				<a href="about-detail.jsp" class="clearfloat">
+				<a href="pages/about-detail.jsp" class="clearfloat">
 					<span class="fl">荣誉资质</span>
 					<i class="iconfont icon-arrowright fr you"></i>
 				</a>
 			</div>
 			<div class="p-list p-listhree clearfloat box-s">
-				<a href="about-detail.jsp" class="clearfloat">
+				<a href="pages/about-detail.jsp" class="clearfloat">
 					<span class="fl">企业文化</span>
 					<i class="iconfont icon-arrowright fr you"></i>
 				</a>
 			</div>
-			<div class="p-list p-listhree clearfloat box-s">
+			<div class="pages/p-list p-listhree clearfloat box-s">
 				<a href="about-detail.jsp" class="clearfloat">
 					<span class="fl">合作流程</span>
 					<i class="iconfont icon-arrowright fr you"></i>

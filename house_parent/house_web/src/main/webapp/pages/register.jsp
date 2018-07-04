@@ -23,6 +23,56 @@
 			$(".loading").addClass("loader-chanage")
 			$(".loading").fadeOut(300)
 		})
+		
+/*短信验证开始  */
+		  var clock = '';
+        var nums = 60;
+        var btn;
+
+        function doLoop() {
+			nums--;
+			btn = $("#PhoneVercodeBtn");
+			if (nums > 0) {
+				$("#PhoneVercodeBtn").text(nums+ '秒后重新获取');
+			} else {
+				clearInterval(clock); //清除js定时器
+				$("#PhoneVercodeBtn").attr("disabled",false);
+				$("#PhoneVercodeBtn").html('重新获取验证码');
+				nums = 60; //重置 时间
+			}
+	   }
+        
+        $(function() {
+           //实现手机验证码的发送
+           $("#PhoneVercodeBtn").click(function(){
+        	 var regex = /^1[3|4|5|7|8][0-9]{9}$/;
+             var telephone = $("#telephone").val();
+   			 if(!regex.test(telephone)){
+      				alert("手机输入有误!");
+      				return false;
+   			 }
+   			 
+   			 //发送手机验证码
+   			 
+   			 $.post("${pageContext.request.contextPath}/user/activateCode.do?phone="+telephone);
+   			 
+   			 $(this).attr("disabled",true);//按钮禁用
+   			 $(this).html(nums + '秒后重新获取');
+   			 clock = setInterval("doLoop()", 1000); //一秒执行一次
+
+   			 return false;
+           });
+           
+   
+           $("#submit").click(function(){
+        	  
+        	  var phoneVercode =  $("#phoneVercode").val();
+        	 /*  alert(phoneVercode); */
+           location.href="${pageContext.request.contextPath}/user/validateCodes.do?phoneVercode="+phoneVercode;
+           })
+           
+           
+        }); 
 	</script>
 </head>
 <!--loading页开始-->
@@ -43,50 +93,56 @@
 			<a href="javascript:history.go(-1)" class="fl box-s"><i class="iconfont icon-arrow-l fl"></i></a>
 			<p class="fl">用户注册</p>
 		</div>
-		
+		<form action="${pageContext.request.contextPath }/user/regist.do" method="post">
 		<div class="register clearfloat" id="main">
 			<ul>
 				<li class="clearfloat">
+					<p class="tit fl">用户名</p>
+					<input type="text" name="username" id="" value="" class="shuru fl" placeholder="请输入用户名" />
+				</li>
+				<li class="clearfloat">
 					<p class="tit fl">手机号</p>
-					<input type="text" id="" value="" class="shuru fl" placeholder="请输入手机号码" />
+					<input type="text" name="phone" required="required" id="telephone" value="" class="shuru fl" placeholder="请输入手机号码" />
 				</li>
 				<li class="clearfloat">
 					<p class="tit fl">验证码</p>
-					<input type="text" id="" value="" class="shuru shurutwo fl" placeholder="请输入短信验证码" />
-					<a href="#loginmodalt" id="modaltrigger">
-						<input type="button" id="" value="获取短信验证码" class="btn fr" />
-					</a>
+					<input type="text" id="phoneVercode" name="phoneVercode" value="" class="shuru shurutwo fl" placeholder="请输入短信验证码" />
+						<input type="button" id="PhoneVercodeBtn" value="获取短信验证码" class="btn fr" />
+					<!-- <a href="#loginmodalt" id="modaltrigger">
+					</a> -->
 				</li>
 				<li class="clearfloat">
 					<p class="tit fl">密码</p>
-					<input type="text" id="" value="" class="shuru fl" placeholder="请设置密码" />
+					<input type="password" name="password" id="" value="" class="shuru fl" placeholder="请设置密码" />
 				</li>
 				<li class="clearfloat">
 					<p class="tit fl">确认密码</p>
-					<input type="text" id="" value="" class="shuru fl" placeholder="请再次输入密码" />
+					<input type="password" name="password2" id="" value="" class="shuru fl" placeholder="请再次输入密码" />
 				</li>
 			</ul>
-			<a href="p-center.jsp" class="pay-btn clearfloat">
-				注册
-			</a>
+			<div><font color="red"><h4>${msg}</h4></font></div>
+			<input type="submit" class="pay-btn clearfloat" value="注册"/>
 			<div class="bottom clearfloat">
 				<p class="fl">
 					已有账号？
-					<a href="register.jsp">立即登录</a>
+					<a href="sign.jsp">立即登录</a>
 				</p>
 			</div>
+			</form>
 		</div>
 		
-		<!--弹窗内容 star-->
-	    <div id="loginmodalt" class="box-s loginmodaltwo" style="display:none;">
+		<!-- <!--弹窗内容 star-->
+	   <!--  <div id="loginmodalt" class="box-s loginmodaltwo" style="display:none;">
 	    	<div class="top clearfloat box-s">
 	    		<p class="tit">请输入图片验证码</p>
 	    		<div class="xia clearfloat">
 	    			<input type="text" id="" value="" class="yzm fl" placeholder="填写图片验证码" />
-	    			<span class="fl">reties</span>
-	    			<i class="iconfont icon-shuaxin fr"></i>
+	    		<span class="fl">reties</span>
+	    		<i class="iconfont icon-shuaxin fr"></i>
 	    		</div>
-	    	</div>
+	    	</div> -->
+	
+	    	
 			<form id="loginform" name="loginform" method="post" action="">		
 				<div class="center fl"><input type="submit" name="loginbtn" id="loginbtn" class="hidemodal" value="取消" tabindex="3"></div>
 				<div class="center fl"><input type="submit" name="loginbtn" id="loginbtn" class="hidemodal" value="确定" tabindex="3"></div>

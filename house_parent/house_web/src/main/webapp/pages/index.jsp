@@ -26,7 +26,7 @@
 		$(".loading").addClass("loader-chanage")
 		$(".loading").fadeOut(300)
 	})
-	 $(function(){
+	$(function(){
 		/*一级分类  */
 		var url = "${pageContext.request.contextPath}/user/findUserNum.do";
 		var params={};
@@ -45,20 +45,21 @@
 			},
 			"contentType":"application/json;charset=UTF-8",
 		})
-	}) 
-	 $(function(){
+	})
+	
+	$(function(){
 		 $("#ss").blur(function(){
 			 /*一级分类  */
 				var url = "${pageContext.request.contextPath}/house/findHouseByName.do";
-				var params={"houseName":$(this).val()};
+				var params={"housename":$(this).val()};
 				
 				$.ajax({
-					url:"${pageContext.request.contextPath}/house/findHouseByName.do?houseName="+encodeURI(encodeURI($(this).val())),
+					url:"${pageContext.request.contextPath}/house/findHouseByName.do?housename="+encodeURI(encodeURI($(this).val())),
 /* 					date:JSON.stringify(params), */
 					type:"get",
 					success:function(date){
 						$(date).each(function(i,n){
-							var str = "<a href=${pageContext.request.contextPath}/house/findHouseById.do?hid="+n.hid+">"+n.houseName+"</a>";
+							var str = "<a href=${pageContext.request.contextPath}/house/findHouseById.do?hid="+n.hid+">"+n.housename+"</a>";
 						$(".tags").append(str);
 						});
 					},
@@ -117,8 +118,8 @@
 					<div class="mui-bar mui-bar-nav clone poo-muitwo">
 						<div class="top-sch-box flex-col">
 							<div class="centerflex">
-								<i class="fdj iconfont icon-sousuo"></i> 
-								<input class="sch-input mui-input-clear" type="text" name="houseName" id="ss"
+								<i class="fdj iconfont icon-sousuo"></i> <input
+									class="sch-input mui-input-clear" type="text" name="housename" id="ss"
 									placeholder="请输入您要搜索的内容" />
 							</div>
 						</div>
@@ -167,10 +168,10 @@
 						<img src="img/lou.png" />
 						<p>写字楼</p>
 				</a></li>
-				<li><a href="map.jsp"> <img src="img/map.png" />
+				<li><a href="pages/map.jsp"> <img src="img/map.png" />
 						<p>地图找房</p>
 				</a></li>
-				<li><a href="landlord.jsp"> <img src="img/people.png" />
+				<li><a href="${pageContext.request.contextPath }/house/findAllHouse.do"> <img src="img/people.png" />
 						<p>我要成为房东</p>
 				</a></li>
 				<li><a href="join.jsp"> <img src="img/woshou.png" />
@@ -195,7 +196,7 @@
 								</div>
 								<div class="right clearfloat">
 									<div class="tit clearfloat">
-										<p class="fl">${list.houseName }</p>
+										<p class="fl">${list.housename }</p>
 										<span class="fr">${list.money }<samp>元/月</samp></span>
 									</div>
 									<p class="recom-jianjie">${list.specification }|${list.model }m²
@@ -219,10 +220,10 @@
 				class="iconfont icon-shouyev1"></i>
 				<p>首页</p>
 		</a></li>
-		<li><a href="pages/lease.jsp"> <i class="iconfont icon-chuzuwo"></i>
+		<li><a href="${pageContext.request.contextPath }/landlord/show.do"> <i class="iconfont icon-chuzuwo"></i>
 				<p>我要出租</p>
 		</a></li>
-		<li><a href="schedule.jsp"> <i
+		<li><a href="${pageContext.request.contextPath }/house/SelectAllDistrict.do?situation=0"> <i
 				class="pages/iconfont icon-richengbiao"></i>
 				<p>看房日程</p>
 		</a></li>

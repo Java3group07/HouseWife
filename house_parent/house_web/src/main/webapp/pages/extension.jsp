@@ -49,9 +49,9 @@
 				<a href="#">
 					<div class="tu fl">
 						<span></span>
-						<img src="img/touxiang.png"/>
+						<img src="${u.face }"/>
 					</div>
-					<p class="tit fl">您还没有昵称哦</p>
+					<p class="tit fl">${u.username }</p>
 					<i class="iconfont icon-arrowright fr"></i>
 				</a>
 			</div>

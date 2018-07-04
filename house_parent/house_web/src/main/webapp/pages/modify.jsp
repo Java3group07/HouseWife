@@ -20,29 +20,39 @@
     <link rel="stylesheet" type="text/css" href="css/loading.css"/>
     <link rel="stylesheet" type="text/css" href="slick/slick.css"/>
 	<script type="text/javascript">
-		$(window).load(function(){
-			$(".loading").addClass("loader-chanage")
-			$(".loading").fadeOut(300)
-		})
 		
 		function flushCheckCode(obj) {
 			obj.src = (obj.src + '?' + new Date())
 		}
- /* $(function(){
-	 
-	var username = $("#username").val();
-	var checkCode = $("#checkCode").val();
-	$("#a").click(function(){
 		
-		location.href="${pageContext.request.contextPath }/user/update1.do?username="+username+"&checkCode="+checkCode;
+		//刷新验证码
+		$(function() {
+			$("#photo").click(
+				function() {
+					$(this).prop(
+						"src",
+						"${pageContext.request.contextPath }/user/verifyCode.do&time"+ new Date().getTime())
+				})
+		})
+
+		$(function() {
+	        //实现手机验证码的发送
+	        $("#PhoneVercodeBtn").click(function(){
+	     	 var regex = /^1(3|5|6|7|8)\d{9}$/;
+	          var phone = $("#phone").val();
+				 if(!regex.test(phone)){
+	   				alert("手机输入有误!");
+	   				return false;
+				 }
+	        });
+	     });
 		
-	}) 
-	 
-	 
-	 
-	 
- }) */
- 
+		
+		
+		$(window).load(function(){
+			$(".loading").addClass("loader-chanage")
+			$(".loading").fadeOut(300)
+		})
 	</script>
 </head>
 <!--loading页开始-->
@@ -72,7 +82,7 @@
 				</li>
 				<li class="clearfloat">
 					<input type="text" name="checkCode" id="checkCode"  placeholder="请输入右图验证码" class="syzma fl" />
-					<span class="fl"><img src="${pageContext.request.contextPath }/verifyCode.do" onclick=flushCheckCode(this) alt="点击刷新验证码" style="cursor: hand" /></span>
+					<span class="fl"><img src="${pageContext.request.contextPath }/verify/verifyCode.do" onclick=flushCheckCode(this) alt="点击刷新验证码" style="cursor: hand" /></span>
 					<!-- <a  class="fr">换一张</a> -->
 				</li>
 				<li><span>${msg }</span></li>

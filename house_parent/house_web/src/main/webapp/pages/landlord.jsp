@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -43,53 +44,74 @@
 			<a href="javascript:history.go(-1)" class="fl box-s"><i class="iconfont icon-arrow-l fl"></i></a>
 			<p class="fl">我是房东</p>
 		</div>
-		
+		<form action="${pageContext.request.contextPath }/landlord/addLandlord.do" method="post">
 		<div class="clearfloat" id="main">
 			<div class="land-banner clearfloat">
 				<img src="upload/2.jpg"/>
 			</div>
+			
 			<div class="land-ctent clearfloat">
 				<ul>
 					<li class="box-s clearfloat">
 						<p class="tit fl">姓名</p>
-						<input type="text" name="" id="" value="" placeholder="您的姓名" class="fl" />
+						<input type="text" name="username" id="" value="" placeholder="您的姓名" class="fl" />
 					</li>
 					<li class="box-s clearfloat">
 						<p class="tit fl">手机号</p>
-						<input type="text" name="" id="" value="" placeholder="您的手机号码" class="fl" />
+						<input type="text" name="phone" id="" value="" placeholder="您的手机号码" class="fl" />
 					</li>
+					
 					<li class="box-s clearfloat">
-						<p class="tit fl">起租房日期</p>
-						<input type="text" name="" id="" value="" placeholder="请选择房屋起租日期" class="fl day" />
-						<i class="iconfont icon-arrowright fl"></i>
-					</li>
+							<p class="tit fl">起租房日期</p>
+							<input type="date" name="onhireDate"  id="" value=""   placeholder="请选择房屋起租日期" class="fl day" />
+							<!-- <button id='demo2' name="onhireDate"    data-options='{"type":"date","beginYear":2014,"endYear":2016}' class="btnfour mui-btn mui-btn-block fl  day">请选择起租日期</button> -->
+							<i class="iconfont icon-arrowright fl"></i>
+						</li>
+					
 					<li class="box-s clearfloat">
 						<p class="tit fl">类型</p>
-						<input type="text" name="" id="" value="" placeholder="请选择房屋类型" class="fl day" />
+						<input type="text" name="type1" id="" value="" readonly="readonly"  placeholder="请选择房屋类型" class="fl day" />
+						<select name="type" class=textbox id=sChannel2 style="WIDTH: 180px">
+			                    <option value="non">--- 请选择---</option>
+								<c:forEach var="list" items="${list }">
+										<option value="${list.genre}">${list.genre}</option>
+								</c:forEach>
+						</select>
 						<i class="iconfont icon-arrowright fl"></i>
 					</li>
 					<li class="box-s clearfloat">
 						<p class="tit fl">小区名称</p>
-						<input type="text" name="" id="" value="" placeholder="房屋所在小区名称" class="fl day" />
+						<input type="text" name="address1" id="" value="" readonly="readonly"  placeholder="房屋所在小区名称" class="fl day" />
+						<select name="address" class=textbox id=sChannel2 style="WIDTH: 180px">
+			                    <option value="non">--- 请选择---</option>
+								<c:forEach var="list" items="${list }">
+										<option value="${list.address}">${list.address}</option>
+								</c:forEach>
+						</select>
 						<i class="iconfont icon-arrowright fl"></i>
 					</li>
 					<li class="box-s clearfloat">
 						<p class="tit fl">户型</p>
-						<input type="text" name="" id="" value="" placeholder="请选择房屋户型" class="fl day" />
+						<input type="text" name="housetype1" id="" value=""  placeholder="请选择房屋户型" class="fl day" />
+						<select name="housetype" class=textbox id=sChannel2 style="WIDTH: 180px">
+			                    <option value="non">--- 请选择---</option>
+								<c:forEach var="list" items="${list }">
+										<option value="${list.specification}">${list.specification}</option>
+								</c:forEach>
+						</select>
 						<i class="iconfont icon-arrowright fl"></i>
 					</li>
 					<li class="box-s clearfloat">
 						<p class="tit fl">意向租金</p>
-						<input type="text" name="" id="" value="" placeholder="您的意向租金" class="fl day" />
+						<input type="text" name="rent" id="" value="" placeholder="您的意向租金" class="fl day" />
 						<i class="iconfont icon-arrowright fl"></i>
 					</li>
 				</ul>
-				<a href="#loginmodal" id="modaltrigger">
-					<input type="button" name="" id="" value="提交委托" class="btn" />
-				</a>
+					<input type="submit" name="" id="" value="提交委托" class="btn" />
 			</div>
+			
 		</div>
-		
+		</form>
 		<!--弹窗内容 star-->
 	    <div id="loginmodal" class="box-s loginmodaltwo" style="display:none;">	    	
 			<form id="loginform" name="loginform" method="post" action="">		

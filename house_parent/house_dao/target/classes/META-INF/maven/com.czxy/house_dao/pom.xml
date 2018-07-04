@@ -9,12 +9,12 @@
   <dependencies>
   	<dependency>
   		<groupId>com.czxy</groupId>
-  		<artifactId>house_commons</artifactId>
+  		<artifactId>house_pojo</artifactId>
   		<version>0.0.1-SNAPSHOT</version>
   	</dependency>
   	<dependency>
   		<groupId>com.czxy</groupId>
-  		<artifactId>house_pojo</artifactId>
+  		<artifactId>house_commons</artifactId>
   		<version>0.0.1-SNAPSHOT</version>
   	</dependency>
   </dependencies>

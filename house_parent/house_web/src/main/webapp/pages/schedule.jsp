@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -50,10 +52,11 @@
 				<div class="notice">
 					<div class="tab-hd clearfloat">
 						<ul class="tab-nav clearfloat">
-						  <li><a href="#">进行中的约看</a></li>
-						  <li><a href="#">已完成的约看</a></li>
+						  <li><a href="${pageContext.request.contextPath }/house/SelectAllDistrict.do?situation=0">进行中的约看</a></li>
+						  <li><a href="${pageContext.request.contextPath }/house/SelectAllDistrict.do?situation=1">已完成的约看</a></li>
 						</ul>
 					</div>
+					<c:forEach items="${dlist }" var="list">
 					<div class="tab-bd clearfloat">
 						<div class="tab-pal">
 							<div class="content clearfloat box-s">
@@ -64,94 +67,34 @@
 									</p>
 									<p class="fl time">
 										<i class="iconfont icon-time"></i>
-										2016-04-30
+										<fmt:formatDate value="${list.indate }"/>
+										
 									</p>
-									<p class="tit fr">
+									<c:if test="${list.situation==0 }">
+										<p class="tit fr">
 										正在确认
-									</p>
-								</div>
-					    		<div class="list clearfloat fl box-s">
-					    			<a href="house-details.jsp">
-						    			<div class="tu clearfloat">
-						    				<span></span>
-						    				<img src="upload/list-tu.jpg"/>
-						    			</div>
-						    			<div class="right clearfloat">
-						    				<div class="tit clearfloat">
-						    					<p class="fl">华府骏苑</p>
-						    					<span class="fr">2500<samp>元/月</samp></span>
-						    				</div>
-						    				<p class="recom-jianjie">三室一厅一卫   |  125m²  |  普装</p>
-						    				<div class="recom-bottom clearfloat">
-						    					<span><i class="iconfont icon-duihao"></i>随时住</span>
-						    					<span><i class="iconfont icon-duihao"></i>家电齐全</span>
-						    				</div>
-						    			</div>
-					    			</a>
-					    		</div>					    		
-					    	</div>
-					    	
-					    	<div class="content clearfloat box-s">
-								<div class="topsche-top box-s clearfloat">
-									<p class="fl add">
-										<i class="iconfont icon-map"></i>
-										合肥·出租房
-									</p>
-									<p class="fl time">
-										<i class="iconfont icon-time"></i>
-										2016-04-30
-									</p>
-									<p class="tit fr">
-										正在确认
-									</p>
-								</div>
-					    		<div class="list clearfloat fl box-s">
-					    			<a href="house-details.jsp">
-						    			<div class="tu clearfloat">
-						    				<span></span>
-						    				<img src="upload/list-tu.jpg"/>
-						    			</div>
-						    			<div class="right clearfloat">
-						    				<div class="tit clearfloat">
-						    					<p class="fl">华府骏苑</p>
-						    					<span class="fr">2500<samp>元/月</samp></span>
-						    				</div>
-						    				<p class="recom-jianjie">三室一厅一卫   |  125m²  |  普装</p>
-						    				<div class="recom-bottom clearfloat">
-						    					<span><i class="iconfont icon-duihao"></i>随时住</span>
-						    					<span><i class="iconfont icon-duihao"></i>家电齐全</span>
-						    				</div>
-						    			</div>
-					    			</a>
-					    		</div>					    		
-					    	</div>
-					    	
-					    	<div class="content clearfloat box-s">
-								<div class="topsche-top box-s clearfloat">
-									<p class="fl add">
-										<i class="iconfont icon-map"></i>
-										合肥·出租房
-									</p>
-									<p class="fl time">
-										<i class="iconfont icon-time"></i>
-										2016-04-30
-									</p>
-									<p class="tit titwo fr">
+										</p>
+									</c:if>
+									
+									
+									<c:if test="${list.situation==1 }">
+										<p class="tit titwo fr">
 										租住此房
-									</p>
+										</p>
+									</c:if>
 								</div>
 					    		<div class="list clearfloat fl box-s">
-					    			<a href="house-details.jsp">
+					    			<a href="${pageContext.request.contextPath }/house/findHouseById.do?hid=${list.hid}">
 						    			<div class="tu clearfloat">
 						    				<span></span>
-						    				<img src="upload/list-tu.jpg"/>
+						    				<img src="${list.image }"/>
 						    			</div>
 						    			<div class="right clearfloat">
 						    				<div class="tit clearfloat">
-						    					<p class="fl">华府骏苑</p>
-						    					<span class="fr">2500<samp>元/月</samp></span>
+						    					<p class="fl">${list.housename }</p>
+						    					<span class="fr">${list.money }<samp>元/月</samp></span>
 						    				</div>
-						    				<p class="recom-jianjie">三室一厅一卫   |  125m²  |  普装</p>
+						    				<p class="recom-jianjie">${list.specification } |  ${list.model }  | ${list.fitment }</p>
 						    				<div class="recom-bottom clearfloat">
 						    					<span><i class="iconfont icon-duihao"></i>随时住</span>
 						    					<span><i class="iconfont icon-duihao"></i>家电齐全</span>
@@ -159,123 +102,15 @@
 						    			</div>
 					    			</a>
 					    		</div>					    		
-					    	</div>
-					    	
-						</div>
-						
-						<div class="tab-pal">
-							<div class="content clearfloat box-s">
-								<div class="topsche-top box-s clearfloat">
-									<p class="fl add">
-										<i class="iconfont icon-map"></i>
-										合肥·出租房
-									</p>
-									<p class="fl time">
-										<i class="iconfont icon-time"></i>
-										2016-04-30
-									</p>
-									<p class="tit titwo fr">
-										租住此房
-									</p>
-								</div>
-					    		<div class="list clearfloat fl box-s">
-					    			<a href="house-details.jsp">
-						    			<div class="tu clearfloat">
-						    				<span></span>
-						    				<img src="upload/list-tu.jpg"/>
-						    			</div>
-						    			<div class="right clearfloat">
-						    				<div class="tit clearfloat">
-						    					<p class="fl">华府骏苑</p>
-						    					<span class="fr">2500<samp>元/月</samp></span>
-						    				</div>
-						    				<p class="recom-jianjie">三室一厅一卫   |  125m²  |  普装</p>
-						    				<div class="recom-bottom clearfloat">
-						    					<span><i class="iconfont icon-duihao"></i>随时住</span>
-						    					<span><i class="iconfont icon-duihao"></i>家电齐全</span>
-						    				</div>
-						    			</div>
-					    			</a>
-					    		</div>					    		
-					    	</div>
-					    	
-					    	<div class="content clearfloat box-s">
-								<div class="topsche-top box-s clearfloat">
-									<p class="fl add">
-										<i class="iconfont icon-map"></i>
-										合肥·出租房
-									</p>
-									<p class="fl time">
-										<i class="iconfont icon-time"></i>
-										2016-04-30
-									</p>
-									<p class="tit fr">
-										正在确认
-									</p>
-								</div>
-					    		<div class="list clearfloat fl box-s">
-					    			<a href="house-details.jsp">
-						    			<div class="tu clearfloat">
-						    				<span></span>
-						    				<img src="upload/list-tu.jpg"/>
-						    			</div>
-						    			<div class="right clearfloat">
-						    				<div class="tit clearfloat">
-						    					<p class="fl">华府骏苑</p>
-						    					<span class="fr">2500<samp>元/月</samp></span>
-						    				</div>
-						    				<p class="recom-jianjie">三室一厅一卫   |  125m²  |  普装</p>
-						    				<div class="recom-bottom clearfloat">
-						    					<span><i class="iconfont icon-duihao"></i>随时住</span>
-						    					<span><i class="iconfont icon-duihao"></i>家电齐全</span>
-						    				</div>
-						    			</div>
-					    			</a>
-					    		</div>					    		
-					    	</div>
-					    	
-					    	<div class="content clearfloat box-s">
-								<div class="topsche-top box-s clearfloat">
-									<p class="fl add">
-										<i class="iconfont icon-map"></i>
-										合肥·出租房
-									</p>
-									<p class="fl time">
-										<i class="iconfont icon-time"></i>
-										2016-04-30
-									</p>
-									<p class="tit titwo fr">
-										租住此房
-									</p>
-								</div>
-					    		<div class="list clearfloat fl box-s">
-					    			<a href="house-details.jsp">
-						    			<div class="tu clearfloat">
-						    				<span></span>
-						    				<img src="upload/list-tu.jpg"/>
-						    			</div>
-						    			<div class="right clearfloat">
-						    				<div class="tit clearfloat">
-						    					<p class="fl">华府骏苑</p>
-						    					<span class="fr">2500<samp>元/月</samp></span>
-						    				</div>
-						    				<p class="recom-jianjie">三室一厅一卫   |  125m²  |  普装</p>
-						    				<div class="recom-bottom clearfloat">
-						    					<span><i class="iconfont icon-duihao"></i>随时住</span>
-						    					<span><i class="iconfont icon-duihao"></i>家电齐全</span>
-						    				</div>
-						    			</div>
-					    			</a>
-					    		</div>					    		
-					    	</div>
-					    	
-						</div>
-						
+					    	</div>	
 					</div>
 				</div>
+				
+				</c:forEach>
+				
 			</div>
 		</div>
-		
+		</div>
 		<footer class="page-footer fixed-footer" id="footer">
 			<ul>
 				<li>
@@ -312,6 +147,5 @@
 	<script type="text/javascript" src="js/tchuang.js" ></script>
 	<script type="text/javascript" src="js/hmt.js" ></script>
 	<script type="text/javascript">
-		jQuery(".notice").slide({ titCell:".tab-hd li", mainCell:".tab-bd",trigger: "click",delayTime:0 });
 	</script>
 </html>

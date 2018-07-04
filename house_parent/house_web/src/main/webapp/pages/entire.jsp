@@ -89,7 +89,7 @@
 							</a>
 								<div class="right clearfloat">
 									<div class="tit clearfloat">
-										<p class="fl">${list.houseName }</p>
+										<p class="fl">${list.housename }</p>
 										<span class="fr">${list.money }<samp>元/月</samp></span>
 									</div>
 									<p class="recom-jianjie">${list.specification }|${list.model }m²

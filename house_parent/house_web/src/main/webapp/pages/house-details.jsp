@@ -1,8 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-    <%@taglib uri="http://java.sun.com/jsp/jstl/fmt"  prefix="fmt" %>
-    
+    <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -66,31 +65,10 @@
 					<div>
 						<img src="${house.image }"/>
 						<div class="tit clearfloat box-s">
-							<p class="one">${house.houseName }</p>
+							<p class="one">${house.housename }</p>
 							<p class="two">${house.address }</p>
 						</div>
 					</div>
-					<!-- <div>
-						<img src="upload/room.jpg"/>
-						<div class="tit clearfloat box-s">
-							<p class="one">华府骏苑2</p>
-							<p class="two">蜀山区-望潜交口</p>
-						</div>
-					</div>
-					<div>
-						<img src="upload/room.jpg"/>
-						<div class="tit clearfloat box-s">
-							<p class="one">华府骏苑3</p>
-							<p class="two">蜀山区-望潜交口</p>
-						</div>
-					</div>
-					<div>
-						<img src="upload/room.jpg"/>
-						<div class="tit clearfloat box-s">
-							<p class="one">华府骏苑4</p>
-							<p class="two">蜀山区-望潜交口</p>
-						</div>
-					</div> -->
 				</div>
 			</div>		
 			
@@ -121,13 +99,11 @@
 		    			<c:if test="${house.situation==1 }">
 		    			<li>现状：已出租</li>
 		    			</c:if>
-		    			<fmt:formatDate value="${test}" pattern="yyyy-MM-dd　HH：mm"/>  
+		    			<li>可入驻：<fmt:formatDate value="${house.indate }"/></li>
 		    			
-		    			  
-		    			  
-		    			<li>可入驻：<fmt:formatDate value="${house.indate}" pattern="yyyy-MM-dd"/></li>
-		    			<li>建造年代：<fmt:formatDate value="${house.constime }" pattern="yyyy-MM-dd"/>年</li>
-		    			<li>可看房：<fmt:formatDate value="${house.indate }" pattern="yyyy-MM-dd"/>以后</li>
+		    			<li>建造年代<fmt:formatDate value="${house.constime }"/>年</li>
+		    		
+		    			<li>可看房：<fmt:formatDate value="${house.indate }"/>以后</li>
 		    		</ul>
 		    		<p class="service-tit">交通：${house.traffic }</p>
 		    	</div>		    	
@@ -176,58 +152,28 @@
 				<div class="recom-tit clearfloat box-s">
 		    		<p>相似好房</p>
 		    	</div>
+		    	
 		    	<div class="recom-xia clearfloat box-s">
+		    		
+			    <c:forEach items="${list }" var="house" begin="0" end="5">
 		    		<div class="list clearfloat fl">
-		    			<a href="house-details.jsp">
+		    			<a href="${pageContext.request.contextPath }/house/findHouseById.do?hid=${house.hid}">
 			    			<div class="tu">
 			    				<span></span>
-			    				<img src="upload/1.jpg"/>
+			    				<img src="${house.image }"/>
 			    			</div>
 			    			<div class="bottom clearfloat">
 			    				<div class="top clearfloat">
-			    					<p class="biaoti">华府骏苑</p>
-			    					<p class="price">1500<span>元/月</span></p>
+			    					<p class="biaoti">${house.housename }</p>
+			    					<p class="price">${house.money }<span>元/月</span></p>
 			    				</div>
 			    				<p class="fu-tit">
-			    					三室一厅一卫   |  125m²  |  普装
+			    					${house.specification }   |  ${house.model }m²  |  ${house.fitment }
 			    				</p>
 			    			</div>
 		    			</a>
 		    		</div>
-		    		<div class="list clearfloat fl">
-		    			<a href="house-details.jsp">
-			    			<div class="tu">
-			    				<span></span>
-			    				<img src="upload/1.jpg"/>
-			    			</div>
-			    			<div class="bottom clearfloat">
-			    				<div class="top clearfloat">
-			    					<p class="biaoti">华府骏苑</p>
-			    					<p class="price">1500<span>元/月</span></p>
-			    				</div>
-			    				<p class="fu-tit">
-			    					三室一厅一卫   |  125m²  |  普装
-			    				</p>
-			    			</div>
-		    			</a>
-		    		</div>
-		    		<div class="list clearfloat fl">
-		    			<a href="house-details.jsp">
-			    			<div class="tu">
-			    				<span></span>
-			    				<img src="upload/1.jpg"/>
-			    			</div>
-			    			<div class="bottom clearfloat">
-			    				<div class="top clearfloat">
-			    					<p class="biaoti">华府骏苑</p>
-			    					<p class="price">1500<span>元/月</span></p>
-			    				</div>
-			    				<p class="fu-tit">
-			    					三室一厅一卫   |  125m²  |  普装
-			    				</p>
-			    			</div>
-		    			</a>
-		    		</div>
+		    		</c:forEach>
 		    	</div>
 			</div>
 			
@@ -240,29 +186,33 @@
 		
 		<!--弹窗内容 star-->
 	    <div id="loginmodal" class="box-s loginmodal" style="display:none;">	    	
-			<form id="loginform" name="loginform" method="post" action="">		
-				<div class="center"><input type="submit" name="loginbtn" id="loginbtn" class="flatbtn-blu hidemodal" value="" tabindex="3"></div>
+			<form  method="post" action="${pageContext.request.contextPath}/subscribe/addSubscribe.do">
+				<!-- 预约房子Id -->
+				<input type="hidden" name="hid" id="username" value="" />
+				<!-- 预约房子Id  -->	
+				<div class="center">
+				</div>
+				<div class="top clearfloat box-s">
+					填写信息
+				</div>
+				<div class="bottom clearfloat box-s">
+					<ul>
+						<li class="clearfloat">
+							<i class="iconfont icon-user"></i>
+							<input type="text" name="username" id="username" value="" placeholder="您的姓名" />
+						</li>
+						<li class="clearfloat">
+							<i class="iconfont icon-phone"></i>
+							<input type="text" name="phone" id="phoneId" value="" placeholder="您的手机号码" />
+						</li>
+						<li class="clearfloat">
+							<i class="iconfont icon-calendar"></i>
+							<input type="date" name="sudate" id="" value="" placeholder="请选择看房时间" />
+						</li>
+					</ul>
+					<input type="submit" value="立即预约" class="btn" />
+				</div>
 			</form>
-			<div class="top clearfloat box-s">
-				填写信息
-			</div>
-			<div class="bottom clearfloat box-s">
-				<ul>
-					<li class="clearfloat">
-						<i class="iconfont icon-user"></i>
-						<input type="text" name="" id="" value="" placeholder="您的姓名" />
-					</li>
-					<li class="clearfloat">
-						<i class="iconfont icon-phone"></i>
-						<input type="text" name="" id="" value="" placeholder="您的手机号码" />
-					</li>
-					<li class="clearfloat">
-						<i class="iconfont icon-calendar"></i>
-						<input type="text" name="" id="" value="" placeholder="请选择看房时间" />
-					</li>
-				</ul>
-				<input type="button" name="" id="" value="立即预约" class="btn" />
-			</div>
 		</div>
 	    <!--弹窗内容 end-->
 		

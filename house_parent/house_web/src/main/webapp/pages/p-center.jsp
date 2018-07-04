@@ -45,34 +45,34 @@
 				<a href="#">
 					<div class="tu fl">
 						<span></span>
-						<img src="img/touxiang.png"/>
+						<img src="${u.face }"/>
 					</div>
-					<p class="tit fl">您还没有昵称哦</p>
+					<p class="tit fl">${u.username }</p>
 					<i class="iconfont icon-arrowright fr"></i>
 				</a>
 			</div>
 			<div class="bottom clearfloat">
 				<ul>
 					<li>
-						<a href="rent-order.jsp" class="clearfloat">
+						<a href="${pageContext.request.contextPath}/order/findAllByOrder.do" class="clearfloat">
 							<p>1</p>
 							<p>房租订单</p>
 						</a>
 					</li>
 					<li>
-						<a href="rent-order.jsp" class="clearfloat">
+						<a href="${pageContext.request.contextPath}/order/selectAllByOrder.do" class="clearfloat">
 							<p>1</p>
 							<p>待付款</p>
 						</a>
 					</li>
 					<li>
-						<a href="empty-list.jsp" class="clearfloat">
+						<a href="pages/empty-list.jsp" class="clearfloat">
 							<p>0</p>
 							<p>待评价</p>
 						</a>
 					</li>
 					<li>
-						<a href="empty-list.jsp" class="clearfloat">
+						<a href="pages/empty-list.jsp" class="clearfloat">
 							<p>0</p>
 							<p>已完成</p>
 						</a>
@@ -89,7 +89,7 @@
 			<div class="p-fenlei clearfloat">
 				<ul>
 					<li>
-						<a href="profit.jsp" class="clearfloat">
+						<a href="pages/profit.jsp" class="clearfloat">
 							<p>￥19.90</p>
 							<p>余额</p>
 						</a>
@@ -101,7 +101,7 @@
 						</a>
 					</li>
 					<li>
-						<a href="coupon.jsp" class="clearfloat">
+						<a href="pages/coupon.jsp" class="clearfloat">
 							<p>3张</p>
 							<p>优惠券</p>
 						</a>
@@ -109,28 +109,28 @@
 				</ul>
 			</div>
 			<div class="p-list p-listwo clearfloat box-s">
-				<a href="collection.jsp" class="clearfloat">
+				<a href="pages/collection.jsp" class="clearfloat">
 					<i class="iconfont icon-favorite fl xing"></i>
 					<span class="fl">我的收藏</span>
 					<i class="iconfont icon-arrowright fr you"></i>
 				</a>
 			</div>
 			<div class="p-list p-listwo clearfloat box-s">
-				<a href="pay-rent.jsp" class="clearfloat">
+				<a href="pages/rent-order.jsp" class="clearfloat">
 					<i class="iconfont icon-money fl money"></i>
 					<span class="fl">付房租</span>
 					<i class="iconfont icon-arrowright fr you"></i>
 				</a>
 			</div>
 			<div class="p-list p-listhree clearfloat box-s">
-				<a href="contract.jsp" class="clearfloat">
+				<a href="pages/contract.jsp" class="clearfloat">
 					<i class="iconfont icon-hetongguanli fl hetongguanli"></i>
 					<span class="fl">我的合同</span>
 					<i class="iconfont icon-arrowright fr you"></i>
 				</a>
 			</div>
 			<div class="p-list p-listhree clearfloat box-s">
-				<a href="pages/entrust.jsp" class="clearfloat">
+				<a href="${pageContext.request.contextPath }/house/findAllLandLord.do" class="clearfloat">
 					<i class="iconfont icon-weituoguanli fl weituoguanli"></i>
 					<span class="fl">我的委托管理</span>
 					<i class="iconfont icon-arrowright fr you"></i>
@@ -138,21 +138,21 @@
 			</div>
 			
 			<div class="p-list p-listwo clearfloat box-s">
-				<a href="extension.jsp" class="clearfloat">
+				<a href="pages/extension.jsp" class="clearfloat">
 					<i class="iconfont icon-gonggao fl gonggao"></i>
 					<span class="fl">我要推广</span>
 					<i class="iconfont icon-arrowright fr you"></i>
 				</a>
 			</div>
 			<div class="p-list p-listhree clearfloat box-s">
-				<a href="about.jsp" class="clearfloat">
+				<a href="pages/about.jsp" class="clearfloat">
 					<i class="iconfont icon-gerenzhongxin fl gerenzhongxin"></i>
 					<span class="fl">关于我们</span>
 					<i class="iconfont icon-arrowright fr you"></i>
 				</a>
 			</div>
 			<div class="p-list p-listhree clearfloat box-s">
-				<a href="modify.jsp" class="clearfloat">
+				<a href="pages/modify.jsp" class="clearfloat">
 					<i class="iconfont icon-lock fl lock"></i>
 					<span class="fl">修改密码</span>
 					<i class="iconfont icon-arrowright fr you"></i>
@@ -163,25 +163,25 @@
 		<footer class="page-footer fixed-footer" id="footer">
 			<ul>
 				<li>
-					<a href="index.jsp">
+					<a href="pages/index.jsp">
 						<i class="iconfont icon-shouyev1"></i>
 						<p>首页</p>
 					</a>
 				</li>
 				<li>
-					<a href="lease.jsp">
+					<a href="pages/lease.jsp">
 						<i class="iconfont icon-chuzuwo"></i>
 						<p>我要出租</p>
 					</a>
 				</li>
 				<li>
-					<a href="schedule.jsp">
+					<a href="pages/schedule.jsp">
 						<i class="iconfont icon-richengbiao"></i>
 						<p>看房日程</p>
 					</a>
 				</li>
 				<li class="active">
-					<a href="sign.jsp">
+					<a href="pages/sign.jsp">
 						<i class="iconfont icon-gerenzhongxin"></i>
 						<p>个人中心</p>
 					</a>
